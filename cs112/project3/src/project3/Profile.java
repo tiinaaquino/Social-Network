@@ -8,8 +8,10 @@ package project3;
 public class Profile {
 	private String type, name, photoFileName, status, friends;
 	private int year;
+	private String password;
 	
-	public Profile(String type, String name, int year, String photoFileName, String status, String friends)
+	
+	public Profile(String type, String name, int year, String photoFileName, String status, String friends, String password)
 	{
 		this.type = type;
 		this.name = name;
@@ -17,6 +19,7 @@ public class Profile {
 		this.photoFileName = photoFileName;
 		this.status = status;
 		this.friends = friends;
+		this.password = password;
 	}
 	
 	// getters
@@ -50,6 +53,16 @@ public class Profile {
 		return friends;
 	}
 	
+	public String getPassword()
+	{
+		String stringYear;
+		stringYear = Integer.toString(year);
+		String firstThree;
+		firstThree = name.substring(0, 3);
+		password = firstThree + stringYear;
+		return password;
+	}
+	
 	// setters
 	public void setType(String userType)
 	{
@@ -79,6 +92,11 @@ public class Profile {
 	public void setFriends(String buddies)
 	{
 		friends = buddies;
+	}
+	
+	public void setPassword(String userPassword)
+	{
+		password = userPassword;
 	}
 	
 	// String toString
