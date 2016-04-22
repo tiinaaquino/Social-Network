@@ -23,9 +23,9 @@ import java.io.IOException;
 import java.util.*;
 
 public class ProfileDatabase {
-	HashMap<String, Profile> profiles;
-	Scanner fileScan, profileScan;
-	String profileInfo;
+	private HashMap<String, Profile> profiles;
+	private Scanner fileScan, profileScan;
+	private String profileInfo;
 	
 	public ProfileDatabase()
 	{
@@ -51,10 +51,34 @@ public class ProfileDatabase {
 		}
 	}
 	
-	public void addProfilesFromFile(String fileName) throws IOException
+	public void loadProfiles(String fileName) throws IOException
 	{
+		
+		// create a scanner for friends
+		
+		
+		// try/ catch block
+		/*
+		BufferedReader br;
+		
+		try {
+			
+			br = new BufferedReader(new FileReader(fileName));
+			String line;
+			while ((line = br.readLine()) != null) {
+				System.out.println(line);
+			}
+			
+		} catch (IOException e) {
+			System.out.println("some message.");
+			e.printStackTrace();
+		}
+		
+		*/
+		
+		
+		
 		String type, name, status, friends;
-		//???
 		String photoFileName;
 		int year;
 		
@@ -75,16 +99,12 @@ public class ProfileDatabase {
 				friends = profileScan.next();
 				
 				newProfile = new Profile (type, name, year, photoFileName, status, friends);
-				//profiles.put(key, value);
+				profiles.put(name, newProfile);
 			}
 			
 		}
 	}
 	
-	public void loadProfiles()
-	{
-		//FILL IN CODE:
-	}
 	
 	public boolean findProfile(String name)
 	{
@@ -92,7 +112,6 @@ public class ProfileDatabase {
 			return true;
 		else
 			return false;
-		
 	}
 
 }
