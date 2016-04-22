@@ -141,6 +141,9 @@ public class MainPanel extends JPanel{
      private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			
+			////// public void findProfile
+			//socialNetwork.findProfile(name); ??????
+			
 			System.out.println("Button pressed");
 			JButton b = (JButton)e.getSource();
 			
@@ -163,6 +166,12 @@ public class MainPanel extends JPanel{
 				
 			}
 			// TODO: write if statements for other buttons
+			
+			if (b.equals(changeStatusButton)) {
+				String status = newStatus.getText();
+				//statusInfo = status;
+				System.out.println(status);
+			}
 				
 			
 			
@@ -181,7 +190,11 @@ public class MainPanel extends JPanel{
     	 loggedInUser = name;
     	 // add the name label  and image to the panel
     	 addLabel(name, "Serif", 25, userProfilePanel);
-    	 addImage("no_image.png", userProfilePanel);
+    	 
+    	// addImage("no_image.png", userProfilePanel);
+    	 String imageString;
+    	 imageString = name + ".png";
+    	 addImage(imageString, userProfilePanel);
     	 
     	 // add status
     	 String statusInfo =  "Playing golf";
