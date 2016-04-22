@@ -55,11 +55,10 @@ public class Profile {
 	
 	public String getPassword()
 	{
-		String stringYear;
-		stringYear = Integer.toString(year);
-		String firstThree;
-		firstThree = name.substring(0, 3);
-		password = firstThree + stringYear;
+		String stringYear = Integer.toString(year);
+		String firstThree = name.substring(0, 3);
+		String lowerCaseThree = firstThree.toLowerCase();
+		password = lowerCaseThree + stringYear;
 		return password;
 	}
 	
@@ -102,7 +101,7 @@ public class Profile {
 	// String toString
 	public String toString()
 	{
-		return (name + " " + photoFileName + " " + status);
+		return (name + " " + photoFileName + " " + status + password);
 	}
 
 }
