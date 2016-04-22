@@ -92,6 +92,7 @@ public class ProfileDatabase {
 			return true;
 		else
 			return false;
+		
 	}
 
 }
