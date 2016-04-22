@@ -2,6 +2,7 @@
  * photoFileName shouldn't be of type String?
  */
 
+
 package project3;
 
 public class Profile {
