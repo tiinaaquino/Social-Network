@@ -11,7 +11,7 @@ public class Profile {
 	private String password;
 	
 	
-	public Profile(String type, String name, int year, String photoFileName, String status, String friends, String password)
+	public Profile(String type, String name, int year, String photoFileName, String status, String friends)
 	{
 		this.type = type;
 		this.name = name;
@@ -19,7 +19,6 @@ public class Profile {
 		this.photoFileName = photoFileName;
 		this.status = status;
 		this.friends = friends;
-		this.password = password;
 	}
 	
 	// getters
