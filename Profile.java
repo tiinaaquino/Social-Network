@@ -104,6 +104,7 @@ public class Profile {
 	}
 	
 	
+	// not sure if this method belongs in this class
 	public boolean authenticate(String inputPassword)
 	{
 		if (inputPassword.equals(password))
