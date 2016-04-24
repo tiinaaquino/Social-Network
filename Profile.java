@@ -102,5 +102,16 @@ public class Profile {
 	{
 		return (name + " " + photoFileName + " " + status + password);
 	}
+	
+	
+	public boolean authenticate(String inputPassword)
+	{
+		if (inputPassword.equals(password))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
 
 }
