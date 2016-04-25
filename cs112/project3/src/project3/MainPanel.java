@@ -65,8 +65,8 @@ public class MainPanel extends JPanel{
         createBottomPanel();
         
          
-        //showTestInfo(socialNetwork.getRandomProfile());
-        showTestInfo("Helen"); // placeholder for your code 
+        showTestInfo(socialNetwork.getRandomProfile());
+        //showTestInfo("Helen"); // placeholder for your code 
     	
        
         // do not change the code below
@@ -233,10 +233,14 @@ public class MainPanel extends JPanel{
     	 // add the name label  and image to the panel
     	 addLabel(name, "Serif", 25, userProfilePanel);
     	 
-    	// addImage("no_image.png", userProfilePanel);
+    	 
+    	// add image 
+    	addImage("no_image.png", userProfilePanel);
+    	 /*
     	 String imageString;
     	 imageString = name + ".png";
     	 addImage(imageString, userProfilePanel);
+    	 */
     	 
     	 // add status
     	 //Profile user;
