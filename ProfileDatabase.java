@@ -37,13 +37,15 @@ public class ProfileDatabase {
 		profiles.put(name, p);
 	}
 	
-	Profile find(String name)
+	public Profile find(String name)
 	{
 		return profiles.get(name);
 	}
 	
 	
-	Profile getRandomProfile()
+	// not if method should return a profile with a String or Profile reference
+	/*
+	public Profile getRandomProfile()
 	{
 		Profile randomUser = profiles.get(null);
 		for (Map.Entry<String, Profile> entry : profiles.entrySet())
@@ -53,7 +55,18 @@ public class ProfileDatabase {
 		}
 		return randomUser;
 	}
+	*/
 	
+	public String getRandomProfile()
+	{
+		String randomUser = " ";
+		for (String key: profiles.keySet())
+		{
+			randomUser = key;
+			break;
+		}
+		return randomUser;
+	}
 	
 	public void printAll()
 	{
