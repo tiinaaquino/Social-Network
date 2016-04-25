@@ -80,33 +80,33 @@ public class ProfileDatabase {
 	public void loadProfiles(String fileName) throws IOException
 	{
 		
-		// create a scanner for friends
-		
 		
 		// try/ catch block
-		/*
+		
 		BufferedReader br;
 		
 		try {
 			
 			br = new BufferedReader(new FileReader(fileName));
+			/*
 			String line;
-			while ((line = br.readLine()) != null) {
+			while ((line = br.readLine()) != null) 
+			{
 				System.out.println(line);
 			}
+			*/
 			
 		} catch (IOException e) {
-			System.out.println("some message.");
-			e.printStackTrace();
+			//System.out.println("some message.");
+			System.out.println(e);
 		}
 		
-		*/
 		
 		
 		
-		String type, name, status, friends;
+		
+		String type, name, year, status, friends;
 		String photoFileName;
-		int year;
 		
 		fileScan = new Scanner(new File("profiles"));
 		while (fileScan.hasNext())
@@ -118,28 +118,25 @@ public class ProfileDatabase {
 			while (profileScan.hasNext())
 			{
 				type = profileScan.next();
+				if (type.equals("organization"))
+				{
+					profiles.remove(type);
+				}
 				name = profileScan.next();
-				year = profileScan.nextInt();
+				year = profileScan.next();
 				photoFileName = profileScan.next();
 				status = profileScan.next();
-				/*
-				 * friends = profileScan.next();
-					newProfile = new Profile (type, name, year, photoFileName, status, friends);
-					profiles.put(name, newProfile);
-				 */
-				friendsScan = new Scanner(profileInfo);
-				friendsScan.useDelimiter(", ");
-				while(friendsScan.hasNext())
-				{
-					friends = profileScan.next();
-					newProfile = new Profile (type, name, year, photoFileName, status, friends);
-					profiles.put(name, newProfile);
-				}
+				friends = profileScan.next();
+				
+				
+				newProfile = new Profile (type, name, year, photoFileName, status, friends);
+				profiles.put(name, newProfile);
+				
 				
 				
 				/*
-				if (type == "organization")
-					profiles.remove(name, newProfile);
+				if (type.equals("organization"))
+					profiles.remove(name);
 				*/
 			}
 			
