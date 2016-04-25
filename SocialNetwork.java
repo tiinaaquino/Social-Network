@@ -25,4 +25,5 @@ public class SocialNetwork {
 		currentList += ", " + newFriend;
 	}
 
+	// get status updates of all friends???
 }
