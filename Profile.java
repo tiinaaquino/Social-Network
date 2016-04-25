@@ -6,12 +6,11 @@
 package project3;
 
 public class Profile {
-	private String type, name, photoFileName, status, friends;
-	private int year;
+	private String type, name, year, photoFileName, status, friends;
 	private String password;
 	
 	
-	public Profile(String type, String name, int year, String photoFileName, String status, String friends)
+	public Profile(String type, String name, String year, String photoFileName, String status, String friends)
 	{
 		this.type = type;
 		this.name = name;
@@ -32,7 +31,7 @@ public class Profile {
 		return name;
 	}
 	
-	public int getYear()
+	public String getYear()
 	{
 		return year;
 	}
@@ -54,10 +53,9 @@ public class Profile {
 	
 	public String getPassword()
 	{
-		String stringYear = Integer.toString(year);
 		String firstThree = name.substring(0, 3);
 		String lowerCaseThree = firstThree.toLowerCase();
-		password = lowerCaseThree + stringYear;
+		password = lowerCaseThree + year;
 		return password;
 	}
 	
@@ -72,7 +70,7 @@ public class Profile {
 		name = aName;
 	}
 	
-	public void setYear(int userYear)
+	public void setYear(String userYear)
 	{
 		year = userYear;
 	}
@@ -100,7 +98,7 @@ public class Profile {
 	// String toString
 	public String toString()
 	{
-		return (name + " " + photoFileName + " " + status + password);
+		return (name + " " + year + " " + photoFileName + " " + status + " " + friends);
 	}
 	
 	
