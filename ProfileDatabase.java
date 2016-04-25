@@ -24,7 +24,8 @@ import java.util.*;
 
 public class ProfileDatabase {
 	private HashMap<String, Profile> profiles;
-	private Scanner fileScan, profileScan, friendsScan;
+	private Scanner fileScan, profileScan;
+	//private Scanner friendsScan;
 	private String profileInfo;
 	
 	public ProfileDatabase()
