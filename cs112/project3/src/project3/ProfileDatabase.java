@@ -52,15 +52,6 @@ public class ProfileDatabase {
 			break;
 		}
 		return randomUser;
-		
-		/*
-		 * do not use this:
-		Random random = new Random();
-		Object[] values = profiles.values().toArray();
-		//Object randomValue = values[random.nextInt(values.length)];
-		Profile someValue = (Profile) values[random.nextInt(values.length)];
-		return someValue;
-		*/
 	}
 	
 	
