@@ -14,7 +14,7 @@ public class Driver {
 	public static void main(String[] args) throws IOException {
 		
 		ProfileDatabase s = new ProfileDatabase();
-		//s.loadProfiles("profiles"); // Uncomment once you write the ProfileDatabase class
+		s.loadProfiles("profiles"); // Uncomment once you write the ProfileDatabase class
 		
 		// create a window that says MyWorld
 		JFrame frame = new JFrame ("MyWorld"); 
@@ -26,5 +26,4 @@ public class Driver {
 	    frame.pack();
 	    frame.setVisible(true);
 	}
-
 }
