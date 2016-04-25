@@ -24,7 +24,7 @@ import java.util.*;
 
 public class ProfileDatabase {
 	private HashMap<String, Profile> profiles;
-	private Scanner fileScan, profileScan;
+	private Scanner fileScan, profileScan, friendsScan;
 	private String profileInfo;
 	
 	public ProfileDatabase()
@@ -41,6 +41,28 @@ public class ProfileDatabase {
 	{
 		return profiles.get(name);
 	}
+	
+	
+	Profile getRandomProfile()
+	{
+		Profile randomUser = profiles.get(null);
+		for (Map.Entry<String, Profile> entry : profiles.entrySet())
+		{
+			randomUser = entry.getValue();
+			break;
+		}
+		return randomUser;
+		
+		/*
+		 * do not use this:
+		Random random = new Random();
+		Object[] values = profiles.values().toArray();
+		//Object randomValue = values[random.nextInt(values.length)];
+		Profile someValue = (Profile) values[random.nextInt(values.length)];
+		return someValue;
+		*/
+	}
+	
 	
 	public void printAll()
 	{
@@ -96,10 +118,25 @@ public class ProfileDatabase {
 				year = profileScan.nextInt();
 				photoFileName = profileScan.next();
 				status = profileScan.next();
-				friends = profileScan.next();
+				/*
+				 * friends = profileScan.next();
+					newProfile = new Profile (type, name, year, photoFileName, status, friends);
+					profiles.put(name, newProfile);
+				 */
+				friendsScan = new Scanner(profileInfo);
+				friendsScan.useDelimiter(", ");
+				while(friendsScan.hasNext())
+				{
+					friends = profileScan.next();
+					newProfile = new Profile (type, name, year, photoFileName, status, friends);
+					profiles.put(name, newProfile);
+				}
 				
-				newProfile = new Profile (type, name, year, photoFileName, status, friends);
-				profiles.put(name, newProfile);
+				
+				/*
+				if (type == "organization")
+					profiles.remove(name, newProfile);
+				*/
 			}
 			
 		}
