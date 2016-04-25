@@ -13,6 +13,8 @@ import java.io.IOException;
 public class MainPanel extends JPanel{
 	
 	private ProfileDatabase socialNetwork;
+	private SocialNetwork myWorld;
+	private Post someStatus;
 	private String loggedInUser = " "; // the user who is currently logged in
 	private String lookedUpUser = " "; // the user we looked up
 	
@@ -62,9 +64,8 @@ public class MainPanel extends JPanel{
         createNewsFeedPanel();
         createBottomPanel();
         
-        // FILL IN CODE
-        // TODO: instead of calling showTestInfo, get a random user from
-        // the social network and display their profile in the login view 
+         
+        //showTestInfo(socialNetwork.getRandomProfile());
         showTestInfo("Helen"); // placeholder for your code 
     	
        
@@ -139,10 +140,28 @@ public class MainPanel extends JPanel{
     /** The inner class that implements ActionListener interface
      *  Use it to handle all the button events.
      */
+    /*
+     * 
+     * 
+     * 
+     * 
+     * 
+     *  this is just a space holder so I can find ButtonListener
+     *  easily
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
      private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			
 			////// public void findProfile
+			
+			
 			//socialNetwork.findProfile(name); ??????
 			
 			System.out.println("Button pressed");
@@ -186,7 +205,12 @@ public class MainPanel extends JPanel{
       * that uses information from the profile database. 
       * Nothing should be hard coded in your implementation.
       **/
-     public void showTestInfo(String name) { 
+     public void showTestInfo(String name) {
+    	 
+    	 userProfilePanel.removeAll();
+    	 
+    	 // make sure this method pulls information from ProfileDatabase
+    	 // use socialNetwork variable I think...
     	 
     	 loggedInUser = name;
     	 // add the name label  and image to the panel
