@@ -1,6 +1,6 @@
 /*
  * not sure what other methods go in here, but
- * create an adding Friends method in here lol
+ * create an adding Friends method in here
  * 
  */
 
