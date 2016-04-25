@@ -205,6 +205,23 @@ public class MainPanel extends JPanel{
       * that uses information from the profile database. 
       * Nothing should be hard coded in your implementation.
       **/
+     /*
+      * 
+      * 
+      * 
+      * 
+      * HARD CODED CODE HERE:
+      * 
+      * 
+      * 
+      * 
+      * 
+      * 
+      * 
+      * 
+      * 
+      * 
+      */
      public void showTestInfo(String name) {
     	 
     	 userProfilePanel.removeAll();
@@ -222,7 +239,9 @@ public class MainPanel extends JPanel{
     	 addImage(imageString, userProfilePanel);
     	 
     	 // add status
+    	 //Profile user;
     	 String statusInfo =  "Playing golf";
+    	 //String statusInfo = user.getStatus();
     	 addLabel(statusInfo, "Serif", 18, userProfilePanel);
     	 addStatusTextfieldAndButton("Change status");
     	 
