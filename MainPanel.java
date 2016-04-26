@@ -175,7 +175,6 @@ public class MainPanel extends JPanel{
 				
 				if ((socialNetwork.findProfile(name) == true) && loggingInUser.authenticate(password) == true)
 				{
-					System.out.println(0);
 					showTestInfo(name);
 					loggedInUser = name;
 				}
@@ -203,8 +202,12 @@ public class MainPanel extends JPanel{
 			
 			if (b.equals(addFriendButton)) {
 				String newFriend = enterNewFriend.getText();
-				currentFriends += ", " + newFriend;
-				userInfo.setFriends(currentFriends);
+				userInfo.addFriend(newFriend);
+				Profile addedFriend = socialNetwork.find(newFriend);
+				addedFriend.addFriend(currentUser);
+
+				//currentFriends += ", " + newFriend;
+				//userInfo.setFriends(currentFriends);
 				showTestInfo(loggedInUser);
 			}
 			
@@ -224,7 +227,6 @@ public class MainPanel extends JPanel{
 			}
 			
 			
-			// this does not compile correctly
 			if (b.equals(homeButton)) {
 				userProfilePanel.removeAll();
 				String name = loginUserName.getText();
