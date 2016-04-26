@@ -103,7 +103,7 @@ public class Profile {
 	
 	public boolean authenticate(String inputPassword)
 	{
-		if (inputPassword.equals(password))
+		if (inputPassword.equals(getPassword()))
 		{
 			return true;
 		}
