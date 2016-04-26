@@ -362,6 +362,10 @@ public class MainPanel extends JPanel{
     	 
 	     // Adding home button to the news panel
     	 newsFeedPanel.removeAll();
+    	 /*
+    	  * name will be correct if user actually logs into
+    	  * the profile that has randomly been selected
+    	  */
     	 homeButton = new JButton("Go back to " + loggedInUser + "'s profile");
 	     newsFeedPanel.add(homeButton);
 	     homeButton.addActionListener (new ButtonListener());
