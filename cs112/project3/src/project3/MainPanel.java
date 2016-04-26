@@ -17,6 +17,8 @@ public class MainPanel extends JPanel{
 	private Post someStatus;
 	private String loggedInUser = " "; // the user who is currently logged in
 	private String lookedUpUser = " "; // the user we looked up
+	private String currentStatus = " ";
+	private String currentFriends = " ";
 	
     JTextField loginUserName; // the text field to enter a username
     JPasswordField loginUserPassword; // the text field for entering the password
@@ -140,59 +142,74 @@ public class MainPanel extends JPanel{
     /** The inner class that implements ActionListener interface
      *  Use it to handle all the button events.
      */
-    /*
-     * 
-     * 
-     * 
-     * 
-     * 
-     *  this is just a space holder so I can find ButtonListener
-     *  easily
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     */
      private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			
-			////// public void findProfile
-			
+	    	//showTestInfo(name); // replace with the function you will write
+			// FILL IN CODE:
+			// You need to access the profile given the name,
+			// and display the profile info
 			
 			//socialNetwork.findProfile(name); ??????
+	    	 Profile userInfo = socialNetwork.find(loggedInUser);
 			
-			System.out.println("Button pressed");
+			System.out.println("Button pressed"); // maybe comment this out later? ask Prof if she wants it in here
 			JButton b = (JButton)e.getSource();
 			
 			if (b.equals(loginUserButton)) { 
 				// The code below will be executed when the Login button is pressed
+				
 				userProfilePanel.removeAll();
 				String name = loginUserName.getText();
 				String password = new String(loginUserPassword.getPassword());
 				
-				// FILL IN CODE: 
+				// FILL IN CODE:
 				// check if this user exists in the social network, and 
 				// authenticate the user: check whether he or she entered the 
 				// username and password correctly. If yes, then assign
 				// loggedInUser = name;
-				
-				showTestInfo(name); // replace with the function you will write
-				// FILL IN CODE:
-				// You need to access the profile given the name,
-				// and display the profile info
-				
+				if (socialNetwork.findProfile(name) == true)
+				{
+					showTestInfo(name);
+					userInfo.authenticate(password);
+					loggedInUser = name;
+				}			
 			}
 			// TODO: write if statements for other buttons
 			
 			if (b.equals(changeStatusButton)) {
 				String status = newStatus.getText();
-				//statusInfo = status;
-				System.out.println(status);
+				userInfo.setStatus(status);
+				//System.out.println(status);
+				addLabel(status, "Serif", 18, userProfilePanel);
 			}
+			
+			if (b.equals(searchUserButton)) {
+				String name = loginUserName.getText();
+				loggedInUser = name;
+				String searchUser = searchUserName.getText();
+				previewTestInfo(searchUser);
+				//newsFeedPanel.add(homeButton);
+			}
+			
+			if (b.equals(homeButton)) {
+				userProfilePanel.removeAll();
+				String name = loginUserName.getText();
+				String password = new String(loginUserPassword.getPassword());
 				
+				// FILL IN CODE:
+				// check if this user exists in the social network, and 
+				// authenticate the user: check whether he or she entered the 
+				// username and password correctly. If yes, then assign
+				// loggedInUser = name;
+				if (socialNetwork.findProfile(name) == true)
+				{
+					showTestInfo(name);
+					userInfo.authenticate(password);
+					loggedInUser = name;
+				}	
+				
+			}
 			
 			
 			updateUI(); // call it at the very end of this method
@@ -222,12 +239,13 @@ public class MainPanel extends JPanel{
       * 
       * 
       */
+     // make sure this method pulls information from ProfileDatabase
+	 // use socialNetwork variable I think...
      public void showTestInfo(String name) {
+    	 Profile userInfo = socialNetwork.find(name);
+    	 
     	 
     	 userProfilePanel.removeAll();
-    	 
-    	 // make sure this method pulls information from ProfileDatabase
-    	 // use socialNetwork variable I think...
     	 
     	 loggedInUser = name;
     	 // add the name label  and image to the panel
@@ -235,22 +253,21 @@ public class MainPanel extends JPanel{
     	 
     	 
     	// add image 
-    	addImage("no_image.png", userProfilePanel);
-    	 /*
-    	 String imageString;
-    	 imageString = name + ".png";
+    	//addImage("no_image.png", userProfilePanel);
+    	 String imageString = userInfo.getPhotoFileName();
     	 addImage(imageString, userProfilePanel);
-    	 */
+    	 
     	 
     	 // add status
     	 //Profile user;
-    	 String statusInfo =  "Playing golf";
-    	 //String statusInfo = user.getStatus();
+    	 String statusInfo = userInfo.getStatus();
+    	 //=  "Playing golf";
     	 addLabel(statusInfo, "Serif", 18, userProfilePanel);
     	 addStatusTextfieldAndButton("Change status");
     	 
     	 // add friends
-    	 String friends = "\nFriends: " + "Jenny";
+    	 String friends = "\nFriends: " + userInfo.getFriends();
+    	 // = "\nFriends: " + "Jenny";
     	 addLabel(friends, "Serif", 18, userProfilePanel);
     	 addFriendTextfieldAndButton();
 
@@ -280,6 +297,43 @@ public class MainPanel extends JPanel{
 		 bottomPanel.removeAll();
 		 bottomPanel.add(new JLabel("Currently logged in as " + loggedInUser));
       
+     }
+     
+     public void previewTestInfo(String name)
+     {
+    	 Profile userInfo = socialNetwork.find(name);
+    	 
+    	 userProfilePanel.removeAll();
+    	 //loggedInUser = currentName;
+    	 // add the name label  and image to the panel
+    	 addLabel(name, "Serif", 25, userProfilePanel);
+    	 
+    	 
+    	// add image 
+    	//addImage("no_image.png", userProfilePanel);
+    	 String imageString = userInfo.getPhotoFileName();
+    	 addImage(imageString, userProfilePanel);
+    	 
+    	 
+    	 // add status
+    	 String statusInfo = "\nStatus: " + userInfo.getStatus();
+    	 addLabel(statusInfo, "Serif", 18, userProfilePanel);
+    	 
+    	 // add friends
+    	 String friends = "\nFriends: " + userInfo.getFriends();
+    	 // = "\nFriends: " + "Jenny";
+    	 addLabel(friends, "Serif", 18, userProfilePanel);
+
+    	 
+	     // Adding home button to the news panel
+    	 newsFeedPanel.removeAll();
+    	 homeButton = new JButton("Go back to your profile");
+	     newsFeedPanel.add(homeButton);
+	     homeButton.addActionListener (new ButtonListener());
+	     System.out.println(loggedInUser + "1");
+	     
+	    
+
      }
     
      
