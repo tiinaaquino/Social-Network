@@ -40,6 +40,11 @@ public class Profile {
 	{
 		return status;
 	}
+	
+	public void setStatus(String update)
+	{
+		status = update;
+	}
 		
 	public String getPhotoFileName()
 	{
@@ -75,11 +80,6 @@ public class Profile {
 		year = userYear;
 	}
 		
-	public void setStatus(String update)
-	{
-		status = update;
-	}
-		
 	public void setPhotoFileName(String photoFile)
 	{
 		photoFileName = photoFile;
@@ -100,7 +100,6 @@ public class Profile {
 	{
 		return (name + " " + year + " " + photoFileName + " " + status + " " + friends);
 	}
-	
 	
 	public boolean authenticate(String inputPassword)
 	{
