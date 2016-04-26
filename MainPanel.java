@@ -155,6 +155,7 @@ public class MainPanel extends JPanel{
 	    	 String currentUser = userInfo.getName();
 	    	 String currentStatus = userInfo.getStatus();
 	    	 String currentFriends = userInfo.getFriends();
+	    	 String currentPassword = userInfo.getPassword();
 			
 			System.out.println("Button pressed"); // maybe comment this out later? ask Prof if she wants it in here
 			JButton b = (JButton)e.getSource();
@@ -164,24 +165,32 @@ public class MainPanel extends JPanel{
 				userProfilePanel.removeAll();
 				String name = loginUserName.getText();
 				String password = new String(loginUserPassword.getPassword());
+				Profile loggingInUser = socialNetwork.find(name);
 				
 				// FILL IN CODE:
 				// check if this user exists in the social network, and 
 				// authenticate the user: check whether he or she entered the 
 				// username and password correctly. If yes, then assign
 				// loggedInUser = name;
-								
-				if ((socialNetwork.findProfile(name) != true) && (userInfo.authenticate(password)) != true)
+				
+				if ((socialNetwork.findProfile(name) == true) && loggingInUser.authenticate(password) == true)
 				{
-					showTestInfo(currentUser);
-				}
-				else
-				{
+					System.out.println(0);
 					showTestInfo(name);
 					loggedInUser = name;
 				}
+				else
+					showTestInfo(currentUser);
 				
-
+				if (socialNetwork.findProfile(name) == false)
+				{
+					showTestInfo(currentUser);
+				}
+				
+				if ((socialNetwork.findProfile(name) == true) && loggingInUser.authenticate(password) == false)
+				{
+					showTestInfo(currentUser);
+				}
 			}
 			// TODO: write if statements for other buttons
 			
