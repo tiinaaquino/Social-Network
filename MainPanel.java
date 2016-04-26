@@ -153,13 +153,13 @@ public class MainPanel extends JPanel{
 			//socialNetwork.findProfile(name); ??????
 	    	 Profile userInfo = socialNetwork.find(loggedInUser);
 	    	 String currentUser = userInfo.getName();
+	    	 String currentStatus = userInfo.getStatus();
 			
 			System.out.println("Button pressed"); // maybe comment this out later? ask Prof if she wants it in here
 			JButton b = (JButton)e.getSource();
 			
 			if (b.equals(loginUserButton)) { 
 				// The code below will be executed when the Login button is pressed
-				
 				userProfilePanel.removeAll();
 				String name = loginUserName.getText();
 				String password = new String(loginUserPassword.getPassword());
@@ -169,27 +169,26 @@ public class MainPanel extends JPanel{
 				// authenticate the user: check whether he or she entered the 
 				// username and password correctly. If yes, then assign
 				// loggedInUser = name;
-				if (socialNetwork.findProfile(name) == true)
+								
+				if ((socialNetwork.findProfile(name) != true) && (userInfo.authenticate(password)) != true)
 				{
-					
-					if (userInfo.authenticate(password) == true)
-					{
-						showTestInfo(name);
-						loggedInUser = name;
-					}
-					else
-						showTestInfo(loggedInUser);
+					showTestInfo(currentUser);
 				}
 				else
-					showTestInfo(loggedInUser);
+				{
+					showTestInfo(name);
+					loggedInUser = name;
+				}
+				
 
 			}
 			// TODO: write if statements for other buttons
 			
 			if (b.equals(changeStatusButton)) {
-				//String status = newStatus.getText();
-				//String currentStatus = userInfo.getStatus();
-				userInfo.setStatus(newStatus.getText());
+				String status = newStatus.getText();
+				currentStatus = status;
+				userInfo.setStatus(status);
+				showTestInfo(loggedInUser);
 				//System.out.println(status);
 				//addLabel(userInfo.getStatus(), "Serif", 18, userProfilePanel);
 				//addLabel(status, "Serif", 18, userProfilePanel);
@@ -211,6 +210,8 @@ public class MainPanel extends JPanel{
 				//newsFeedPanel.add(homeButton);
 			}
 			
+			
+			// this does not compile correctly
 			if (b.equals(homeButton)) {
 				userProfilePanel.removeAll();
 				String name = loginUserName.getText();
