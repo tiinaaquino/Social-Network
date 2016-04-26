@@ -154,6 +154,7 @@ public class MainPanel extends JPanel{
 	    	 Profile userInfo = socialNetwork.find(loggedInUser);
 	    	 String currentUser = userInfo.getName();
 	    	 String currentStatus = userInfo.getStatus();
+	    	 String currentFriends = userInfo.getFriends();
 			
 			System.out.println("Button pressed"); // maybe comment this out later? ask Prof if she wants it in here
 			JButton b = (JButton)e.getSource();
@@ -189,10 +190,13 @@ public class MainPanel extends JPanel{
 				currentStatus = status;
 				userInfo.setStatus(status);
 				showTestInfo(loggedInUser);
-				//System.out.println(status);
-				//addLabel(userInfo.getStatus(), "Serif", 18, userProfilePanel);
-				//addLabel(status, "Serif", 18, userProfilePanel);
-
+			}
+			
+			if (b.equals(addFriendButton)) {
+				String newFriend = enterNewFriend.getText();
+				currentFriends += ", " + newFriend;
+				userInfo.setFriends(currentFriends);
+				showTestInfo(loggedInUser);
 			}
 			
 			if (b.equals(searchUserButton)) {
@@ -350,9 +354,9 @@ public class MainPanel extends JPanel{
     	 
 	     // Adding home button to the news panel
     	 newsFeedPanel.removeAll();
-    	 homeButton = new JButton("Go back to " + loggedInUser + "profile");
+    	 homeButton = new JButton("Go back to " + loggedInUser + "'s profile");
 	     newsFeedPanel.add(homeButton);
-	     //homeButton.addActionListener (new ButtonListener());
+	     homeButton.addActionListener (new ButtonListener());
 
      }
     
