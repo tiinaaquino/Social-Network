@@ -5,6 +5,8 @@
 
 package project3;
 
+import java.util.ArrayList;
+
 public class Profile {
 	private String type, name, year, photoFileName, status, friends;
 	private String password;
@@ -101,9 +103,28 @@ public class Profile {
 		return (name + " " + year + " " + photoFileName + " " + status + " " + friends);
 	}
 	
+	// other methods
 	public boolean authenticate(String inputPassword)
 	{
 		if (inputPassword.equals(getPassword()))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public void addFriend(String newFriend)
+	{
+		friends += ", " + newFriend;
+		setFriends(friends);
+	}
+	
+	public boolean alreadyFriends(String newFriend)
+	{
+		//fix this later
+		String newVar = "(.*)" + newFriend + "(.*)";
+		if (friends.matches(newVar) == true)
 		{
 			return true;
 		}
