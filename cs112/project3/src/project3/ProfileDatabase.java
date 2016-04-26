@@ -27,6 +27,7 @@ public class ProfileDatabase {
 	private Scanner fileScan, profileScan;
 	//private Scanner friendsScan;
 	private String profileInfo;
+	Profile newProfile;
 	
 	public ProfileDatabase()
 	{
@@ -83,11 +84,8 @@ public class ProfileDatabase {
 		
 		
 		// try/ catch block
-		
 		BufferedReader br;
-		
-		try {
-			
+		try {	
 			br = new BufferedReader(new FileReader(fileName));
 			/*
 			String line;
@@ -96,25 +94,39 @@ public class ProfileDatabase {
 				System.out.println(line);
 			}
 			*/
-			
 		} catch (IOException e) {
 			//System.out.println("some message.");
 			System.out.println(e);
 		}
 		
-		
-		
-		
-		
 		String type, name, year, status, friends;
 		String photoFileName;
+		// String[] attributes;
 		
 		fileScan = new Scanner(new File("profiles"));
 		while (fileScan.hasNext())
 		{
-			Profile newProfile;
+			Profile newProfile;			
 			profileInfo = fileScan.nextLine();
-			profileScan = new Scanner(profileInfo);
+			
+			// tutor suggested to use split method
+			String [] attributes = profileInfo.split("; ");
+			type = attributes[0];
+			if (type.equals("organization"))
+			{
+				profiles.remove(type);
+			}
+			name = attributes[1];
+			year = attributes[2];
+			photoFileName = attributes[3];
+			status = attributes[4];
+			friends = attributes[5];
+			
+			newProfile = new Profile (type, name, year, photoFileName, status, friends);
+			profiles.put(name, newProfile);
+			
+			/*
+			profileScan = new Scanner(profileInfo);		
 			profileScan.useDelimiter("; ");
 			while (profileScan.hasNext())
 			{
@@ -127,19 +139,16 @@ public class ProfileDatabase {
 				year = profileScan.next();
 				photoFileName = profileScan.next();
 				status = profileScan.next();
-				friends = profileScan.next();
-				
-				
+				friends = profileScan.next();				
 				newProfile = new Profile (type, name, year, photoFileName, status, friends);
 				profiles.put(name, newProfile);
 				
 				
+				//if (type.equals("organization"))
+					//profiles.remove(name);
 				
-				/*
-				if (type.equals("organization"))
-					profiles.remove(name);
-				*/
 			}
+			*/
 			
 		}
 	}
@@ -152,5 +161,19 @@ public class ProfileDatabase {
 		else
 			return false;
 	}
+	
+	/*
+	// double check this... maybe this goes into Profile class???
+	
+	public boolean authenticate(String inputPassword)
+	{
+		if (inputPassword.equals(newProfile.getPassword()))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	*/
 
 }
