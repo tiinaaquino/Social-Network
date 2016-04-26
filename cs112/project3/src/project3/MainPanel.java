@@ -202,6 +202,18 @@ public class MainPanel extends JPanel{
 			
 			if (b.equals(addFriendButton)) {
 				String newFriend = enterNewFriend.getText();
+				if (userInfo.alreadyFriends(newFriend) == true)
+				{
+					showTestInfo(loggedInUser);
+				}
+				else
+				{
+					userInfo.addFriend(newFriend);
+					Profile addedFriend = socialNetwork.find(newFriend);
+					addedFriend.addFriend(currentUser);
+					showTestInfo(loggedInUser);
+				}
+				/*
 				userInfo.addFriend(newFriend);
 				Profile addedFriend = socialNetwork.find(newFriend);
 				addedFriend.addFriend(currentUser);
@@ -209,6 +221,7 @@ public class MainPanel extends JPanel{
 				//currentFriends += ", " + newFriend;
 				//userInfo.setFriends(currentFriends);
 				showTestInfo(loggedInUser);
+				*/
 			}
 			
 			if (b.equals(searchUserButton)) {
