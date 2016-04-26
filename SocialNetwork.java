@@ -4,9 +4,15 @@
  * 
  */
 
+
+// no ArrayLists or HashMaps
 package project3;
 
+import java.util.ArrayList;
+
 public class SocialNetwork {
+	private ProfileDatabase p;
+	private Profile user;
 	private String listOfFriends;
 	
 	public SocialNetwork(String listOfFriends)
@@ -21,7 +27,15 @@ public class SocialNetwork {
 	
 	public void addToListOfFriends(String newFriend)
 	{
-		String currentList = getListOfFriends();
+		String currentList = user.getFriends();
+		currentList += ", " + newFriend;
+	}
+	
+	public void addToListOfFriends(Profile user, String newFriend)
+	{
+		String currentList = user.getFriends();
+		//Profile[] people = currentList.split(", ");
+
 		currentList += ", " + newFriend;
 	}
 
