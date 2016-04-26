@@ -15,6 +15,7 @@ public class Driver {
 		
 		ProfileDatabase s = new ProfileDatabase();
 		s.loadProfiles("profiles"); // Uncomment once you write the ProfileDatabase class
+
 		
 		// create a window that says MyWorld
 		JFrame frame = new JFrame ("MyWorld"); 
