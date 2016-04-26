@@ -170,18 +170,26 @@ public class MainPanel extends JPanel{
 				// loggedInUser = name;
 				if (socialNetwork.findProfile(name) == true)
 				{
-					showTestInfo(name);
-					userInfo.authenticate(password);
-					loggedInUser = name;
+					
+					if (userInfo.authenticate(password) == true)
+					{
+						showTestInfo(name);
+						loggedInUser = name;
+					}
+					else
+						showTestInfo(loggedInUser);
 				}			
 			}
 			// TODO: write if statements for other buttons
 			
 			if (b.equals(changeStatusButton)) {
-				String status = newStatus.getText();
-				userInfo.setStatus(status);
+				//String status = newStatus.getText();
+				//String currentStatus = userInfo.getStatus();
+				userInfo.setStatus(newStatus.getText());
 				//System.out.println(status);
-				addLabel(status, "Serif", 18, userProfilePanel);
+				//addLabel(userInfo.getStatus(), "Serif", 18, userProfilePanel);
+				//addLabel(status, "Serif", 18, userProfilePanel);
+
 			}
 			
 			if (b.equals(searchUserButton)) {
@@ -264,6 +272,8 @@ public class MainPanel extends JPanel{
     	 //=  "Playing golf";
     	 addLabel(statusInfo, "Serif", 18, userProfilePanel);
     	 addStatusTextfieldAndButton("Change status");
+	     //changeStatusButton.addActionListener (new ButtonListener());
+
     	 
     	 // add friends
     	 String friends = "\nFriends: " + userInfo.getFriends();
