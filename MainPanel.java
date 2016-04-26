@@ -13,7 +13,7 @@ import java.io.IOException;
 public class MainPanel extends JPanel{
 	
 	private ProfileDatabase socialNetwork;
-	private SocialNetwork myWorld;
+	//private SocialNetwork myWorld;
 	private Post someStatus;
 	private String loggedInUser = " "; // the user who is currently logged in
 	private String lookedUpUser = " "; // the user we looked up
@@ -152,6 +152,7 @@ public class MainPanel extends JPanel{
 			
 			//socialNetwork.findProfile(name); ??????
 	    	 Profile userInfo = socialNetwork.find(loggedInUser);
+	    	 String currentUser = userInfo.getName();
 			
 			System.out.println("Button pressed"); // maybe comment this out later? ask Prof if she wants it in here
 			JButton b = (JButton)e.getSource();
@@ -178,7 +179,10 @@ public class MainPanel extends JPanel{
 					}
 					else
 						showTestInfo(loggedInUser);
-				}			
+				}
+				else
+					showTestInfo(loggedInUser);
+
 			}
 			// TODO: write if statements for other buttons
 			
@@ -196,7 +200,14 @@ public class MainPanel extends JPanel{
 				String name = loginUserName.getText();
 				loggedInUser = name;
 				String searchUser = searchUserName.getText();
-				previewTestInfo(searchUser);
+				if (socialNetwork.findProfile(searchUser) == true) {
+					previewTestInfo(searchUser);
+				}
+				else
+					if (socialNetwork.findProfile(searchUser) == false) {
+						System.out.println();
+					}
+					//showTestInfo(loggedInUser);
 				//newsFeedPanel.add(homeButton);
 			}
 			
@@ -204,6 +215,7 @@ public class MainPanel extends JPanel{
 				userProfilePanel.removeAll();
 				String name = loginUserName.getText();
 				String password = new String(loginUserPassword.getPassword());
+				showTestInfo(currentUser);
 				
 				// FILL IN CODE:
 				// check if this user exists in the social network, and 
@@ -337,12 +349,9 @@ public class MainPanel extends JPanel{
     	 
 	     // Adding home button to the news panel
     	 newsFeedPanel.removeAll();
-    	 homeButton = new JButton("Go back to your profile");
+    	 homeButton = new JButton("Go back to " + loggedInUser + "profile");
 	     newsFeedPanel.add(homeButton);
-	     homeButton.addActionListener (new ButtonListener());
-	     System.out.println(loggedInUser + "1");
-	     
-	    
+	     //homeButton.addActionListener (new ButtonListener());
 
      }
     
