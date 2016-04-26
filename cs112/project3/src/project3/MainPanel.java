@@ -233,7 +233,6 @@ public class MainPanel extends JPanel{
 					userInfo.authenticate(password);
 					loggedInUser = name;
 				}	
-				
 			}
 			
 			
@@ -285,7 +284,7 @@ public class MainPanel extends JPanel{
     	 
     	 // add status
     	 //Profile user;
-    	 String statusInfo = userInfo.getStatus();
+    	 String statusInfo = "\nStatus: " + userInfo.getStatus();
     	 //=  "Playing golf";
     	 addLabel(statusInfo, "Serif", 18, userProfilePanel);
     	 addStatusTextfieldAndButton("Change status");
