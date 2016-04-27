@@ -1,8 +1,3 @@
-/*
- * photoFileName shouldn't be of type String?
- */
-
-
 package project3;
 
 import java.util.ArrayList;
@@ -11,7 +6,7 @@ public class Profile {
 	private String type, name, year, photoFileName, status, friends;
 	private String password;
 	
-	
+	// constructor
 	public Profile(String type, String name, String year, String photoFileName, String status, String friends)
 	{
 		this.type = type;
@@ -41,11 +36,6 @@ public class Profile {
 	public String getStatus()
 	{
 		return status;
-	}
-	
-	public void setStatus(String update)
-	{
-		status = update;
 	}
 		
 	public String getPhotoFileName()
@@ -97,6 +87,11 @@ public class Profile {
 		password = userPassword;
 	}
 	
+	public void setStatus(String update)
+	{
+		status = update;
+	}
+	
 	// String toString
 	public String toString()
 	{
@@ -104,6 +99,8 @@ public class Profile {
 	}
 	
 	// other methods
+	
+	// this method checks if the user input password is correct
 	public boolean authenticate(String inputPassword)
 	{
 		if (inputPassword.equals(getPassword()))
@@ -114,12 +111,14 @@ public class Profile {
 			return false;
 	}
 	
+	// this method adds a friend
 	public void addFriend(String newFriend)
 	{
 		friends += ", " + newFriend;
 		setFriends(friends);
 	}
 	
+	// this method ensures that a user can't add duplicates
 	public boolean alreadyFriends(String newFriend)
 	{
 		//fix this later
@@ -131,5 +130,4 @@ public class Profile {
 		else
 			return false;
 	}
-
 }
