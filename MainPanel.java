@@ -13,7 +13,7 @@ import java.io.IOException;
 public class MainPanel extends JPanel{
 	
 	private ProfileDatabase socialNetwork;
-	//private SocialNetwork myWorld;
+	private SocialNetwork myWorld;
 	private Post someStatus;
 	private String loggedInUser = " "; // the user who is currently logged in
 	private String lookedUpUser = " "; // the user we looked up
@@ -329,12 +329,46 @@ public class MainPanel extends JPanel{
 	     JLabel line = new JLabel("------------");
 	     newsFeedPanel.add(line);
 	     newsFeedPanel.add(new JLabel("\n"));
-	    
+	     
+	     JLabel currentUserName = new JLabel(loggedInUser);
+	     currentUserName.setAlignmentX(Component.LEFT_ALIGNMENT);
+	     currentUserName.setFont(new Font("Serif", Font.PLAIN, 18));
+	     JLabel currentUserStatus = new JLabel(userInfo.getStatus());
+	     currentUserStatus.setAlignmentX(Component.LEFT_ALIGNMENT);
+	     newsFeedPanel.add(currentUserName);
+	     newsFeedPanel.add(currentUserStatus);
+	     newsFeedPanel.add(new JLabel("\n"));
+	     
+	     String listOfFriends = userInfo.getFriends();
+	     JLabel aFriend, friendsStatus;
+	     
+	     for (String friend : listOfFriends.split(", "))
+	     {
+	    	 aFriend = new JLabel(friend);
+		     aFriend.setAlignmentX(Component.LEFT_ALIGNMENT);
+		     aFriend.setFont(new Font("Serif", Font.PLAIN, 18));
+		     Profile other = socialNetwork.find(friend);
+		     String theirStatus = other.getStatus();
+		     friendsStatus = new JLabel(theirStatus);
+		     friendsStatus.setAlignmentX(Component.LEFT_ALIGNMENT);
+		     newsFeedPanel.add(aFriend);
+		     newsFeedPanel.add(friendsStatus);
+		     newsFeedPanel.add(new JLabel("\n"));
+
+	     }
+	     
+	     /*
+	     JLabel someLabel = new JLabel(listOfFriends);
+	     someLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+	     someLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+	     newsFeedPanel.add(someLabel);
+	     */
 	     // Adding Jenny's status update to the news panel
 	     // In the starter code it's hard-coded, but you will change that.
 	     // You need to access friends of the  user who is currently logged in, 
 	     // get status updates for all friends, 
 	     // sort them based on time and post them on the newsfeed.
+	     /*
 	     JLabel nameFriend = new JLabel("Jenny");
 	     nameFriend.setAlignmentX(Component.LEFT_ALIGNMENT);
 	     nameFriend.setFont(new Font("Serif", Font.PLAIN, 18));
@@ -343,6 +377,7 @@ public class MainPanel extends JPanel{
 	     friendsStatus.setAlignmentX(Component.LEFT_ALIGNMENT);
 	     newsFeedPanel.add(friendsStatus);
 	     newsFeedPanel.add(new JLabel(" "));
+	    */
 	    
 		 bottomPanel.removeAll();
 		 bottomPanel.add(new JLabel("Currently logged in as " + loggedInUser));
