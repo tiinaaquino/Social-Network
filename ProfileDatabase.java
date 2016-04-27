@@ -29,16 +29,19 @@ public class ProfileDatabase {
 	private String profileInfo;
 	Profile newProfile;
 	
+	// constructor
 	public ProfileDatabase()
 	{
 		profiles = new HashMap<String, Profile>();
 	}
 	
+	// this method adds a profile
 	public void addProfile(String name, Profile p)
 	{
 		profiles.put(name, p);
 	}
 	
+	// this method finds and returns a profile
 	public Profile find(String name)
 	{
 		return profiles.get(name);
@@ -59,6 +62,7 @@ public class ProfileDatabase {
 	}
 	*/
 	
+	// this method returns a string of a random profile
 	public String getRandomProfile()
 	{
 		String randomUser = " ";
@@ -79,21 +83,13 @@ public class ProfileDatabase {
 		}
 	}
 	
+	// this method reads info from file profile
 	public void loadProfiles(String fileName) throws IOException
 	{
-		
-		
 		// try/ catch block
 		BufferedReader br;
 		try {	
 			br = new BufferedReader(new FileReader(fileName));
-			/*
-			String line;
-			while ((line = br.readLine()) != null) 
-			{
-				System.out.println(line);
-			}
-			*/
 		} catch (IOException e) {
 			//System.out.println("some message.");
 			System.out.println(e);
@@ -101,7 +97,6 @@ public class ProfileDatabase {
 		
 		String type, name, year, status, friends;
 		String photoFileName;
-		// String[] attributes;
 		
 		fileScan = new Scanner(new File("profiles"));
 		while (fileScan.hasNext())
@@ -142,18 +137,15 @@ public class ProfileDatabase {
 				friends = profileScan.next();				
 				newProfile = new Profile (type, name, year, photoFileName, status, friends);
 				profiles.put(name, newProfile);
-				
-				
+			
 				//if (type.equals("organization"))
 					//profiles.remove(name);
-				
 			}
 			*/
-			
 		}
 	}
 	
-	
+	// this method checks if a user is in the file profiles
 	public boolean findProfile(String name)
 	{
 		if (profiles.containsKey(name) == true)
@@ -161,19 +153,4 @@ public class ProfileDatabase {
 		else
 			return false;
 	}
-	
-	/*
-	// double check this... maybe this goes into Profile class???
-	
-	public boolean authenticate(String inputPassword)
-	{
-		if (inputPassword.equals(newProfile.getPassword()))
-		{
-			return true;
-		}
-		else
-			return false;
-	}
-	*/
-
 }
