@@ -216,8 +216,15 @@ public class MainPanel extends JPanel{
 				{
 					userInfo.addFriend(newFriend);
 					Profile addedFriend = socialNetwork.find(newFriend);
-					addedFriend.addFriend(currentUser);
-					showTestInfo(loggedInUser);
+					if (socialNetwork.findProfile(newFriend) == false)
+					{
+						showTestInfo(loggedInUser);
+					}
+					else
+					{
+						addedFriend.addFriend(currentUser);
+						showTestInfo(loggedInUser);
+					}
 				}
 				
 				/* experimenting code:
