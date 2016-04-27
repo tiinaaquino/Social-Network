@@ -20,8 +20,9 @@ public class SocialNetwork {
 		this.listOfFriends = listOfFriends;
 	}
 	
-	public String getListOfFriends()
+	public String getListOfFriends(String person)
 	{
+		listOfFriends = user.getFriends();
 		return listOfFriends;
 	}
 	
